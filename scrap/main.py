@@ -14,3 +14,4 @@ class Vertex:
         self.pos = pos if pos else dim * [0]
         self.pos = pos
 
+print("test")
