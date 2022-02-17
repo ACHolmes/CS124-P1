@@ -23,11 +23,6 @@ int main(int argc, char* argv[])
     int n = 3;
     float mat[3][3] = {{0, 0 , 0 }, {0, 0, 0}, {0, 0, 0}};
     node nodes[n];
-    for (int i = 0; i < 15; i++)
-    {
-        printf("%f ", rand01());
-    }
-
     for (int i = 0; i < n; i++)
         {
             nodes[i].x = rand01();
@@ -37,7 +32,8 @@ int main(int argc, char* argv[])
         {
             for (int j = i + 1; j < n; j++)
             {
-                float w = sqrt(( ( pow(nodes[i].x, 2) - pow(nodes[j].x, 2) ) + ( pow(nodes[i].y, 2) - pow(nodes[j].y, 2) ) ));
+                float w = sqrt(( ( pow(nodes[i].x - nodes[j].x, 2) ) + ( pow(nodes[i].y  - nodes[j].y, 2) ) ));
+                printf("%f", w);
                 mat[i][j] = mat[j][i] = w;
             }
         }
@@ -45,7 +41,7 @@ int main(int argc, char* argv[])
     {
         for(int j = 0; j < n; j++)
         {
-            printf("%f ", mat[i][j]);
+            printf("%f a ", mat[i][j]);
         }
         printf("%n");
     }

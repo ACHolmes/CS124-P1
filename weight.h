@@ -35,7 +35,7 @@ float** graphWeights(int n, int dim, float** mat)
             {
                 for (int j = i + 1; j < n; j++)
                 {
-                    float w = sqrt(( ( pow(nodes[i].x, 2) - pow(nodes[j].x, 2) ) + ( pow(nodes[i].y, 2) - pow(nodes[j].y, 2) ) ));
+                    float w = sqrt(( ( pow(nodes[i].x - nodes[j].x, 2) ) + ( pow(nodes[i].y  - nodes[j].y, 2) ) ));
                     mat[i][j] = mat[j][i] = w;
                 }
             }
@@ -51,8 +51,8 @@ float** graphWeights(int n, int dim, float** mat)
             {
                 for (int j = i + 1; j < n; j++)
                 {
-                    float w = sqrt(( ( pow(nodes[i].x, 2) - pow(nodes[j].x, 2) ) + ( pow(nodes[i].y, 2) - pow(nodes[j].y, 2) ) 
-                                   + ( pow(nodes[i].z, 2) - pow(nodes[j].z, 2) ) ));
+                    float w = sqrt(( ( pow(nodes[i].x - nodes[j].x, 2) ) + ( pow(nodes[i].y - nodes[j].y, 2) ) 
+                                   + ( pow(nodes[i].z - nodes[j].z, 2) ) ));
                     mat[i][j] = mat[j][i] = w;
                 }
             }
@@ -69,8 +69,8 @@ float** graphWeights(int n, int dim, float** mat)
             {
                 for (int j = i + 1; j < n; j++)
                 {
-                    float w = sqrt(( ( pow(nodes[i].x, 2) - pow(nodes[j].x, 2) ) + ( pow(nodes[i].y, 2) - pow(nodes[j].y, 2) ) 
-                                   + ( pow(nodes[i].z, 2) - pow(nodes[j].z, 2) ) + ( pow(nodes[i].z, 2) - pow(nodes[j].z, 2) ) ));
+                    float w = sqrt(( ( pow(nodes[i].x - nodes[j].x, 2) ) + ( pow(nodes[i].y - nodes[j].y, 2) ) 
+                                   + ( pow(nodes[i].z - nodes[j].z, 2) ) + ( pow(nodes[i].z - nodes[j].z, 2) ) ));
                     mat[i][j] = mat[j][i] = w;
                 }
             }

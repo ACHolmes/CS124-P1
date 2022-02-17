@@ -1,8 +1,8 @@
 typedef struct node{
-    int x;
-    int y;
-    int z;
-    int w;
+    float x;
+    float y;
+    float z;
+    float w;
 } node;
 
 typedef struct edge{
