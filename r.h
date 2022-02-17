@@ -3,6 +3,8 @@
 #include <limits.h>
 #include <stdbool.h>
 #include <float.h>
+#include "time.h"
+#include <unistd.h>
 
 float rand01(void)
 {
