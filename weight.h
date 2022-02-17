@@ -2,13 +2,9 @@
 #include "struct.h"
 #include <math.h>
 
-int N;
-// Takes in number of vertices, dimension and an empty matrix of the correct size
-// And then actually outputs the adjacency matrix with the correct weights everywhere
-void setN(int n){
-    N = n;
-}
-
+// Creates adjacency matrix with randomized weights
+// of correct size and dimension, takes in empty n x n mat, fills it and returns
+// pointer to head of mat.
 float* graphWeights(int n, int dim, float* mat)
 {
     node nodes[n];

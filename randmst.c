@@ -1,51 +1,21 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <limits.h>
-#include <stdbool.h>
-#include <float.h>
-//#include "r.h"
-//#include "struct.h"
-//#include "math.h"
-
-//#include "SMFT.h"
-#include "weight.h"
+#include "malloc.h"
 
 #define nArray = [128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144]
 // Capped at 512, 1024 doesn't work
 int main(int argc, char* argv[])
 {
+    // sets random seed for rand functionality
     srand( time(NULL));
     if (argc != 5)
     {
         printf("Usage: ./randmst 0 numpoints numtrials dimension");
         return 1;
     }
-    int n = 1024;
-    float mat[n][n];
-    node nodes[n];
-    printf("test");
-    for (int i = 0; i < n; i++)
-    {
-        nodes[i].x = rand01();
-        nodes[i].y = rand01();
-        nodes[i].z = rand01();
-    }
-    for (int i = 0; i < n; i++)
-    {
-        for (int j = i + 1; j < n; j++)
-        {
-            float w = sqrt(( ( pow(nodes[i].x - nodes[j].x, 2) ) + ( pow(nodes[i].y - nodes[j].y, 2) ) 
-                            + ( pow(nodes[i].z - nodes[j].z, 2) ) ));
-            mat[i][j] = mat[j][i] = w;
-        }
-    }
-    for(int i = 0; i < n; i++)
-    {
-        for(int j = 0; j < n; j++)
-        {
-            printf("%f ", mat[i][j]);
-        }
-        printf("\n");
-    }
+
+    // Currently caps out at 8192 :( too much malloc!
+    int n = 8192;
+    float* mat = createBlank(n, 2);
+    mat = graphWeights(n, 2, mat);
+    printMat(mat, n);
 }
 

@@ -12,5 +12,5 @@ weight: weight.h
 r: r.h
 	gcc r.h -o r
 
-malloc: malloc.c
-	gcc malloc.c -o malloc
+malloc: malloc.h
+	gcc malloc.h -o malloc
