@@ -9,7 +9,7 @@ void setN(int n){
     N = n;
 }
 
-float** graphWeights(int n, int dim, float** mat)
+float* graphWeights(int n, int dim, float* mat)
 {
     node nodes[n];
     switch (dim)
@@ -20,7 +20,7 @@ float** graphWeights(int n, int dim, float** mat)
                 for (int j = i + 1; j < n; j++)
                 {
                     float r = rand01();
-                    mat[i][j] = mat[j][i] = r;
+                    *(mat + i*n + j) = *(mat + j*n + i) = r;
                 }
             }
             return mat;
@@ -36,7 +36,7 @@ float** graphWeights(int n, int dim, float** mat)
                 for (int j = i + 1; j < n; j++)
                 {
                     float w = sqrt(( ( pow(nodes[i].x - nodes[j].x, 2) ) + ( pow(nodes[i].y  - nodes[j].y, 2) ) ));
-                    mat[i][j] = mat[j][i] = w;
+                    *(mat + i*n + j) = *(mat + j*n + i) = w;
                 }
             }
             return mat;
@@ -53,7 +53,7 @@ float** graphWeights(int n, int dim, float** mat)
                 {
                     float w = sqrt(( ( pow(nodes[i].x - nodes[j].x, 2) ) + ( pow(nodes[i].y - nodes[j].y, 2) ) 
                                    + ( pow(nodes[i].z - nodes[j].z, 2) ) ));
-                    mat[i][j] = mat[j][i] = w;
+                    *(mat + i*n + j) = *(mat + j*n + i) = w;
                 }
             }
             return mat;
@@ -71,7 +71,7 @@ float** graphWeights(int n, int dim, float** mat)
                 {
                     float w = sqrt(( ( pow(nodes[i].x - nodes[j].x, 2) ) + ( pow(nodes[i].y - nodes[j].y, 2) ) 
                                    + ( pow(nodes[i].z - nodes[j].z, 2) ) + ( pow(nodes[i].z - nodes[j].z, 2) ) ));
-                    mat[i][j] = mat[j][i] = w;
+                    *(mat + i*n + j) = *(mat + j*n + i) = w;
                 }
             }
             return mat;
@@ -79,15 +79,15 @@ float** graphWeights(int n, int dim, float** mat)
     return mat;
 }
 
-void printMat(float** mat, int n)
+void printMat(float* mat, int n)
 {
     for(int i = 0; i < n; i++)
     {
         for(int j = 0; j < n; j++)
         {
-            printf("%f ", mat[i][j]);
+            printf("%f ", *(mat + i*n + j));
         }
-        printf("%n");
+        printf("\n");
     }
     return;
 }

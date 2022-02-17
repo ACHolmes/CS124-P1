@@ -11,7 +11,7 @@
 //#include "weight.h"
 
 #define nArray = [128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144]
-
+// Capped at 512, 1024 doesn't work
 int main(int argc, char* argv[])
 {
     srand( time(NULL));
@@ -20,22 +20,25 @@ int main(int argc, char* argv[])
         printf("Usage: ./randmst 0 numpoints numtrials dimension");
         return 1;
     }
-    int n = 3;
-    float mat[3][3] = {{0, 0 , 0 }, {0, 0, 0}, {0, 0, 0}};
+    int n = 1024;
+    float mat[n][n];
     node nodes[n];
+    printf("test");
     for (int i = 0; i < n; i++)
+    {
+        nodes[i].x = rand01();
+        nodes[i].y = rand01();
+        nodes[i].z = rand01();
+    }
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = i + 1; j < n; j++)
         {
-            nodes[i].x = rand01();
-            nodes[i].y = rand01();
+            float w = sqrt(( ( pow(nodes[i].x - nodes[j].x, 2) ) + ( pow(nodes[i].y - nodes[j].y, 2) ) 
+                            + ( pow(nodes[i].z - nodes[j].z, 2) ) ));
+            mat[i][j] = mat[j][i] = w;
         }
-        for (int i = 0; i < n; i++)
-        {
-            for (int j = i + 1; j < n; j++)
-            {
-                float w = sqrt(( ( pow(nodes[i].x - nodes[j].x, 2) ) + ( pow(nodes[i].y  - nodes[j].y, 2) ) ));
-                mat[i][j] = mat[j][i] = w;
-            }
-        }
+    }
     for(int i = 0; i < n; i++)
     {
         for(int j = 0; j < n; j++)
