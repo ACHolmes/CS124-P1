@@ -3,12 +3,12 @@
 #include <limits.h>
 #include <stdbool.h>
 #include <float.h>
-#include "r.h"
-#include "struct.h"
-#include "math.h"
+//#include "r.h"
+//#include "struct.h"
+//#include "math.h"
 
 //#include "SMFT.h"
-//#include "weight.h"
+#include "weight.h"
 
 #define nArray = [128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144]
 
