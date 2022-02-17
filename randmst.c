@@ -33,7 +33,6 @@ int main(int argc, char* argv[])
             for (int j = i + 1; j < n; j++)
             {
                 float w = sqrt(( ( pow(nodes[i].x - nodes[j].x, 2) ) + ( pow(nodes[i].y  - nodes[j].y, 2) ) ));
-                printf("%f", w);
                 mat[i][j] = mat[j][i] = w;
             }
         }
@@ -41,9 +40,9 @@ int main(int argc, char* argv[])
     {
         for(int j = 0; j < n; j++)
         {
-            printf("%f a ", mat[i][j]);
+            printf("%f ", mat[i][j]);
         }
-        printf("%n");
+        printf("\n");
     }
 }
 
