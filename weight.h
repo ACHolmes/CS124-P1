@@ -2,6 +2,7 @@
 #include "struct.h"
 #include <math.h>
 
+
 // Attempting to implement adjacency list format to reduce memory usage.
 
 void print_nodes(node* head) {
@@ -9,6 +10,7 @@ void print_nodes(node* head) {
 
     while (current != NULL) {
         printf("%i: %f %f %f %f\n", current->n, current->x, current->y, current->z, current->w);
+        fflush(stdout);
         current = current->next;
     }
 }
@@ -19,6 +21,7 @@ void print_edges(edge* head)
 
     while (current != NULL) {
         printf("%i -> %i, w: %f\n", current->from, current->to, current->weight);
+        fflush(stdout);
         current = current->next;
     }
 }
@@ -107,15 +110,11 @@ edge* graphWeights(int n, int dim)
             print_nodes(nodesi);
             edge* out2 = head->next;
             // Creating all edges between those nodes that we need
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < n - 1; i++)
             {
                 for (int j = i + 1; j < n; j++)
                 {
                     float w = sqrt(( ( pow(nodesi->x - nodesj->x, 2) ) + ( pow(nodesi->y  - nodesj->y, 2) ) ));
-                    if (w > 1.1)
-                    {
-                        continue;
-                    }
                     edge* e = malloc(sizeof(edge));
                     if (e == NULL){
                         printf("%i, %i \n", i, j);
@@ -128,19 +127,14 @@ edge* graphWeights(int n, int dim)
                     e->from = i;
                     e->to = j;
                     cursor = e;
-                    printf("%i->%i, w: %f \n", e->from, e->to, e->weight);
+                    //printf("%i->%i, w: %f \n", e->from, e->to, e->weight);
                     nodesj = nodesj->next;
-                    if( i == n - 2 && j == n - 1)
-                    {
-                        printf("test");
-                    }
                 }
                 nodesi = nodesi->next;
                 nodesj = nodesi->next;
+                
             }
-            printf("test2");
             free(head);
-            print_edges(cursor);
             return head;
         /*case 3:
             for (int i = 0; i < n; i++)
@@ -179,19 +173,4 @@ edge* graphWeights(int n, int dim)
             return mat;
     */}
     //return mat;
-}
-
-
-
-void printMat(float* mat, int n)
-{
-    for(int i = 0; i < n; i++)
-    {
-        for(int j = 0; j < n; j++)
-        {
-            printf("%f ", *(mat + i*n + j));
-        }
-        printf("\n");
-    }
-    return;
 }
