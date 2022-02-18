@@ -63,7 +63,7 @@ edge* graphWeights(int n, int dim)
                 for (int j = i + 1; j < n; j++)
                 {
                     float r = rand01();
-                    if (r > 0.2)
+                    if (r > 1.2)
                     {
                         continue;
                     }
@@ -105,6 +105,7 @@ edge* graphWeights(int n, int dim)
             node* nodesj = nodesi->next;
             free(nhead);
             print_nodes(nodesi);
+            edge* out2 = head->next;
             // Creating all edges between those nodes that we need
             for (int i = 0; i < n; i++)
             {
@@ -126,20 +127,21 @@ edge* graphWeights(int n, int dim)
                     e->weight = w;
                     e->from = i;
                     e->to = j;
-                    printf("%i", e->to);
                     cursor = e;
-                    printf("%i", cursor->to);
-                    //printf("%i->%i, w: %f \n", e->from, e->to, e->weight);
+                    printf("%i->%i, w: %f \n", e->from, e->to, e->weight);
                     nodesj = nodesj->next;
+                    if( i == n - 2 && j == n - 1)
+                    {
+                        printf("test");
+                    }
                 }
                 nodesi = nodesi->next;
                 nodesj = nodesi->next;
             }
-            edge* out2 = head->next;
-            printf("\n %i", out2->from);
+            printf("test2");
             free(head);
-            print_edges(out2);
-            return out2;
+            print_edges(cursor);
+            return head;
         /*case 3:
             for (int i = 0; i < n; i++)
             {
