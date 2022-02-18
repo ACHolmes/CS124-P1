@@ -13,9 +13,9 @@ int main(int argc, char* argv[])
     }
 
     // Currently caps out at 8192 :( too much malloc!
-    int n = 32768;
+    int n = 10;
     //float* mat = createBlank(n, 1);
-    edge* list = graphWeights(n, 1);
+    edge* list = graphWeights(n, 2);
     print_edges(list);
     clearWeights(list);
 }
