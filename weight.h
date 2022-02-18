@@ -126,7 +126,9 @@ edge* graphWeights(int n, int dim)
                     e->weight = w;
                     e->from = i;
                     e->to = j;
+                    printf("%i", e->to);
                     cursor = e;
+                    printf("%i", cursor->to);
                     //printf("%i->%i, w: %f \n", e->from, e->to, e->weight);
                     nodesj = nodesj->next;
                 }
