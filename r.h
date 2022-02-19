@@ -9,4 +9,4 @@
 float rand01(void)
 {
     return (float) rand()/RAND_MAX;
-}
+} 

@@ -14,3 +14,4 @@ r: r.h
 
 malloc: malloc.h
 	gcc malloc.h -o malloc
+

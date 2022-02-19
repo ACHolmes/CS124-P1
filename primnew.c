@@ -14,4 +14,4 @@
 float Prim(float* edges, int n, int dim)
 {
 	return 0.0;
-}
+} 

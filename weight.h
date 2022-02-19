@@ -250,4 +250,4 @@ edge* graphWeights(int n, int dim)
             free(head);
             return out;
     }
-}
+} 
