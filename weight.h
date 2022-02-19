@@ -56,6 +56,9 @@ edge* graphWeights(int n, int dim)
     edge* cursor = head;
     node* nhead = malloc(sizeof(node));
     node* ncursor = nhead;
+    node* nodesi;
+    node* nodesj;
+    edge* out;
     int counter = 0;
     //float lim = (float) (100 * dim) / n;
     switch (dim)
@@ -72,8 +75,9 @@ edge* graphWeights(int n, int dim)
                     }
                     edge* e = malloc(sizeof(edge));
                     if (e == NULL){
-                        printf("Edge allocation error");
                         clearWeights(head);
+                        free(e);
+                        printf("Edge allocation error");
                         return NULL;
                     }
                     cursor->next = e;
@@ -83,9 +87,9 @@ edge* graphWeights(int n, int dim)
                     cursor = e;
                 }
             }
-            edge* out1 = head->next;
+            out = head->next;
             free(head);
-            return out1;
+            return out;
         case 2:
             // Generating n with random x,y locations, in a linked list
             for (int i = 0; i < n; i++)
@@ -93,8 +97,10 @@ edge* graphWeights(int n, int dim)
                 node* n = malloc(sizeof(node));
                 if(n == NULL)
                 {
-                    printf("Node allocation error");
+                    free(n);
                     clearNodes(nhead);
+                    printf("Node allocation error");
+
                     return NULL;
                 }   
                 ncursor->next = n;
@@ -104,11 +110,10 @@ edge* graphWeights(int n, int dim)
                 counter++;
                 ncursor = n;
             }
-            node* nodesi = nhead->next;
-            node* nodesj = nodesi->next;
+            nodesi = nhead->next;
+            nodesj = nodesi->next;
             free(nhead);
             print_nodes(nodesi);
-            edge* out2 = head->next;
             // Creating all edges between those nodes that we need
             for (int i = 0; i < n - 1; i++)
             {
@@ -117,9 +122,10 @@ edge* graphWeights(int n, int dim)
                     float w = sqrt(( ( pow(nodesi->x - nodesj->x, 2) ) + ( pow(nodesi->y  - nodesj->y, 2) ) ));
                     edge* e = malloc(sizeof(edge));
                     if (e == NULL){
+                        free(e);
+                        clearWeights(head);
                         printf("%i, %i \n", i, j);
                         printf("Edge allocation error");
-                        clearWeights(head);
                         return NULL;
                     }
                     cursor->next = e;
@@ -127,50 +133,121 @@ edge* graphWeights(int n, int dim)
                     e->from = i;
                     e->to = j;
                     cursor = e;
-                    //printf("%i->%i, w: %f \n", e->from, e->to, e->weight);
                     nodesj = nodesj->next;
                 }
                 nodesi = nodesi->next;
                 nodesj = nodesi->next;
                 
             }
+            out = head->next;
+            free(head);
+            return out;
+        case 3:
+            // Generating n with random x,y,z locations, in a linked list
+            for (int i = 0; i < n; i++)
+            {
+                node* n = malloc(sizeof(node));
+                if(n == NULL)
+                {
+                    free(n);
+                    clearNodes(nhead);
+                    printf("Node allocation error");
+                    return NULL;
+                }   
+                ncursor->next = n;
+                n->x = rand01();
+                n->y = rand01();
+                n->z = rand01();
+                n->n = counter;
+                counter++;
+                ncursor = n;
+            }
+            nodesi = nhead->next;
+            nodesj = nodesi->next;
+            free(nhead);
+            print_nodes(nodesi);
+            // Creating all edges between those nodes that we need
+            for (int i = 0; i < n - 1; i++)
+            {
+                for (int j = i + 1; j < n; j++)
+                {
+                    float w = sqrt(( ( pow(nodesi->x - nodesj->x, 2) ) + ( pow(nodesi->y  - nodesj->y, 2) )
+                                   + ( pow(nodesi->z  - nodesj->z, 2) ) ));
+                    edge* e = malloc(sizeof(edge));
+                    if (e == NULL){
+                        free(e);
+                        clearWeights(head);
+                        printf("%i, %i \n", i, j);
+                        printf("Edge allocation error");
+                        return NULL;
+                    }
+                    cursor->next = e;
+                    e->weight = w;
+                    e->from = i;
+                    e->to = j;
+                    cursor = e;
+                    nodesj = nodesj->next;
+                }
+                nodesi = nodesi->next;
+                nodesj = nodesi->next;
+                
+            }
+            out = head->next;
             free(head);
             return head;
-        /*case 3:
-            for (int i = 0; i < n; i++)
-            {
-                nodes[i].x = rand01();
-                nodes[i].y = rand01();
-                nodes[i].z = rand01();
-            }
-            for (int i = 0; i < n; i++)
-            {
-                for (int j = i + 1; j < n; j++)
-                {
-                    float w = sqrt(( ( pow(nodes[i].x - nodes[j].x, 2) ) + ( pow(nodes[i].y - nodes[j].y, 2) ) 
-                                   + ( pow(nodes[i].z - nodes[j].z, 2) ) ));
-                    *(mat + i*n + j) = *(mat + j*n + i) = w;
-                }
-            }
-            return mat;
         case 4:
+            // Generating n with random x,y,z locations, in a linked list
             for (int i = 0; i < n; i++)
             {
-                nodes[i].x = rand01();
-                nodes[i].y = rand01();
-                nodes[i].z = rand01();
-                nodes[i].w = rand01();
+                node* n = malloc(sizeof(node));
+                if(n == NULL)
+                {
+                    free(n);
+                    clearNodes(nhead);
+                    printf("Node allocation error");
+                    return NULL;
+                }   
+                ncursor->next = n;
+                n->x = rand01();
+                n->y = rand01();
+                n->z = rand01();
+                n->w = rand01();
+                n->n = counter;
+                counter++;
+                ncursor = n;
             }
-            for (int i = 0; i < n; i++)
+            nodesi = nhead->next;
+            nodesj = nodesi->next;
+            free(nhead);
+            print_nodes(nodesi);
+            // Creating all edges between those nodes that we need
+            for (int i = 0; i < n - 1; i++)
             {
                 for (int j = i + 1; j < n; j++)
                 {
-                    float w = sqrt(( ( pow(nodes[i].x - nodes[j].x, 2) ) + ( pow(nodes[i].y - nodes[j].y, 2) ) 
-                                   + ( pow(nodes[i].z - nodes[j].z, 2) ) + ( pow(nodes[i].z - nodes[j].z, 2) ) ));
-                    *(mat + i*n + j) = *(mat + j*n + i) = w;
+                    float w = sqrt(( ( pow(nodesi->x - nodesj->x, 2) ) + ( pow(nodesi->y  - nodesj->y, 2) )
+                                   + ( pow(nodesi->z - nodesj->z, 2) ) + ( pow(nodesi->w  - nodesj->w, 2) ) ));
+                    edge* e = malloc(sizeof(edge));
+                    if (e == NULL){
+                        free(e);
+                        clearWeights(head);
+                        printf("%i, %i \n", i, j);
+                        printf("Edge allocation error");
+                        return NULL;
+                    }
+                    cursor->next = e;
+                    e->weight = w;
+                    e->from = i;
+                    e->to = j;
+                    cursor = e;
+                    nodesj = nodesj->next;
                 }
+                nodesi = nodesi->next;
+                nodesj = nodesi->next;
+                
             }
-            return mat;
-    */}
-    //return mat;
+            out = head->next;
+            free(head);
+            return out;
+    }
 }
