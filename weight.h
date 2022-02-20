@@ -50,6 +50,102 @@ void clearNodes(node* head)
     return;
 }
 
+node* graphVertices(int n, int dim)
+{
+    node* head = malloc(sizeof(node));
+    node* cursor = head;
+    node* temp;
+    int counter = 0;
+    switch(dim)
+    {
+        case 1:
+            while (cursor != NULL)
+            {
+                node* node = malloc(sizeof(node));
+                if(node == NULL)
+                {
+                    printf("Memory allocation error");
+                    return NULL;
+                }
+                node->n = counter;
+                node->x = rand01();
+                cursor->next = node;
+                cursor = node;
+                counter++;
+            }
+            temp = head;
+            head = head->next;
+            free(temp);
+            return head;
+        case 2:
+            for (int i = 0; i < n; i++)
+            {
+                node* newnode = malloc(sizeof(node));
+                if(newnode == NULL)
+                {
+                    free(newnode);
+                    clearNodes(head);
+                    printf("Node allocation error");
+
+                    return NULL;
+                }   
+                cursor->next = newnode;
+                newnode->x = rand01();
+                newnode->y = rand01();
+                newnode->n = i;
+                cursor = newnode;
+            }
+            node* out = head->next;
+            free(head);
+            return out;
+        case 3:
+            while (cursor != NULL)
+            {
+                node* node = malloc(sizeof(node));
+                if(node == NULL)
+                {
+                    printf("Memory allocation error");
+                    return NULL;
+                }
+                node->n = counter;
+                node->x = rand01();
+                node->y = rand01();
+                node->z = rand01();
+                cursor->next = node;
+                cursor = node;
+                counter++;
+            }
+            temp = head;
+            head = head->next;
+            free(temp);
+            return head;
+        case 4:
+            while (cursor != NULL)
+            {
+                node* node = malloc(sizeof(node));
+                if(node == NULL)
+                {
+                    printf("Memory allocation error");
+                    return NULL;
+                }
+                node->n = counter;
+                node->x = rand01();
+                node->y = rand01();
+                node->z = rand01();
+                node->w = rand01();
+                cursor->next = node;
+                cursor = node;
+                counter++;
+            }
+            temp = head;
+            head = head->next;
+            free(temp);
+            return head;
+    }
+    printf("Invalid dimension");
+    return NULL;
+}
+/*
 edge* graphWeights(int n, int dim)
 {
     edge* head = malloc(sizeof(edge));
@@ -250,4 +346,4 @@ edge* graphWeights(int n, int dim)
             free(head);
             return out;
     }
-} 
+} */
