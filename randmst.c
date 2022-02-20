@@ -17,7 +17,7 @@ int main(int argc, char* argv[])
     int n = 1024;
     //float* mat = createBlank(n, 1);
     edge* list = graphWeights(n, 3);
-    print_edges(list);
+    //print_edges(list);
     clearWeights(list);
     return 0;
 } 
