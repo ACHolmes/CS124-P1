@@ -1,6 +1,23 @@
 // Typedefs for structs
-typedef struct node node;
+typedef struct node node2;
+typedef struct node node3;
+typedef struct node node4;
 typedef struct edge edge;
+
+typedef struct node{
+    int n;
+    float x;
+    float y;
+    node2 * next;
+} node2;
+
+typedef struct node{
+    int n;
+    float x;
+    float y;
+    float z;
+    node3 * next;
+} node3;
 
 typedef struct node{
     int n;
@@ -8,8 +25,9 @@ typedef struct node{
     float y;
     float z;
     float w;
-    node * next;
-} node;
+    node4 * next;
+} node4;
+
 
 typedef struct edge{
     float weight;
@@ -19,7 +37,19 @@ typedef struct edge{
 } edge;
 
 typedef struct graph{
-    node* nodes;
+    node2* nodes;
     edge* edges;
     int dim;
-} graph;
+} graph2;
+
+typedef struct graph{
+    node3* nodes;
+    edge* edges;
+    int dim;
+} graph3;
+
+typedef struct graph{
+    node4* nodes;
+    edge* edges;
+    int dim;
+} graph4;
