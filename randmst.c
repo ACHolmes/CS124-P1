@@ -16,7 +16,7 @@ int main(int argc, char* argv[])
     // >= 12 breaks?
     int n = 1024;
     //float* mat = createBlank(n, 1);
-    edge* list = graphWeights(n, 3);
+    edge* list = graphWeights3(n, 3);
     print_edges(list);
     clearWeights(list);
     return 0;

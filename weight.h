@@ -10,7 +10,7 @@ void print_nodes2(node2* head) {
     node2* current = head;
 
     while (current != NULL) {
-        printf("%i: %f %f %f %f\n", current->n, current->x, current->y, current->z, current->w);
+        printf("%i: %f %f %f %f\n", current->n, current->x, current->y);
         fflush(stdout);
         current = current->next;
     }
@@ -146,7 +146,7 @@ edge* graphWeights2(int n, int dim)
                 if(n == NULL)
                 {
                     free(n);
-                    clearNodes(nhead);
+                    clearNodes2(nhead);
                     printf("Node allocation error");
 
                     return NULL;
@@ -161,7 +161,7 @@ edge* graphWeights2(int n, int dim)
             nodesi = nhead->next;
             nodesj = nodesi->next;
             free(nhead);
-            print_nodes(nodesi);
+            print_nodes2(nodesi);
             // Creating all edges between those nodes that we need
             for (int i = 0; i < n - 1; i++)
             {
@@ -238,7 +238,7 @@ edge* graphWeights3(int n, int dim)
             edge* e = malloc(sizeof(edge));
             if (e == NULL){
                 free(e);
-                clearWeights3(head);
+                clearWeights(head);
                 printf("%i, %i \n", i, j);
                 printf("Edge allocation error");
                 return NULL;
@@ -258,7 +258,6 @@ edge* graphWeights3(int n, int dim)
     free(head);
     return head;
 } 
-
 
 edge* graphWeights4(int n, int dim)
 {
@@ -300,13 +299,12 @@ edge* graphWeights4(int n, int dim)
     {
         for (int j = i + 1; j < n; j++)
         {
-            //fix for 4
             float w = sqrt(( ( pow(nodesi->x - nodesj->x, 2) ) + ( pow(nodesi->y  - nodesj->y, 2) )
-                            + ( pow(nodesi->z  - nodesj->z, 2) ) ));
+                                   + ( pow(nodesi->z - nodesj->z, 2) ) + ( pow(nodesi->w  - nodesj->w, 2) ) ));
             edge* e = malloc(sizeof(edge));
             if (e == NULL){
                 free(e);
-                clearWeights4(head);
+                clearWeights(head);
                 printf("%i, %i \n", i, j);
                 printf("Edge allocation error");
                 return NULL;
