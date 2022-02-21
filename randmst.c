@@ -30,8 +30,8 @@ int main(int argc, char* argv[])
     printf("Result: %f\n", prim(list, numpoints, dimension));
     fflush(stdout);
     clearNodes(list);
-    /* Trying to automate testing, but this breaks for >2 iterations for some reason
-    for (int k = 0; k < 7; k++)
+    //Trying to automate testing, but this breaks for >2 iterations for some reason
+    /*for (int k = 0; k < 7; k++)
     {
         for (int j = 3; j < 5; j++)
         {
