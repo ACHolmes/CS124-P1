@@ -42,7 +42,7 @@ void print_nodes(node* head, int n, int dim) {
             printf("%i: %f %f %f %f\n", head->n, head->x, head->y, head->z, head->w);
             return;
     }
-    printf("test");
+    printf("Invalid dimesion\n");
 }
 
 void clearNodes(node* head)
@@ -62,28 +62,29 @@ node* graphVertices(int n, int dim)
     node* head = malloc(sizeof(node));
     node* cursor = head;
     node* temp;
+    node* out;
     int counter = 0;
     switch(dim)
     {
         case 1:
-            while (cursor != NULL)
+            for (int i = 0; i < n; i++)
             {
-                node* node = malloc(sizeof(node));
-                if(node == NULL)
+                node* newnode = malloc(sizeof(node));
+                if(newnode == NULL)
                 {
-                    printf("Memory allocation error");
+                    printf("Memory allocation error\n");
+                    free(newnode);
+                    clearNodes(head);
                     return NULL;
                 }
-                node->n = counter;
-                node->x = rand01();
-                cursor->next = node;
-                cursor = node;
-                counter++;
+                newnode->n = i;
+                newnode->x = rand01();
+                cursor->next = newnode;
+                cursor = newnode;
             }
-            temp = head;
-            head = head->next;
-            free(temp);
-            return head;
+            out = head->next;
+            free(head);
+            return out;
         case 2:
             for (int i = 0; i < n; i++)
             {
@@ -92,8 +93,7 @@ node* graphVertices(int n, int dim)
                 {
                     free(newnode);
                     clearNodes(head);
-                    printf("Node allocation error");
-
+                    printf("Node allocation error\n");
                     return NULL;
                 }   
                 cursor->next = newnode;
@@ -102,51 +102,49 @@ node* graphVertices(int n, int dim)
                 newnode->n = i;
                 cursor = newnode;
             }
-            node* out = head->next;
+            out = head->next;
             free(head);
             return out;
         case 3:
-            while (cursor != NULL)
+            for (int i = 0; i < n; i++)
             {
-                node* node = malloc(sizeof(node));
-                if(node == NULL)
+                node* newnode = malloc(sizeof(node));
+                if(newnode == NULL)
                 {
-                    printf("Memory allocation error");
+                    free(newnode);
+                    clearNodes(head);
+                    printf("Memory allocation error\n");
                     return NULL;
                 }
-                node->n = counter;
-                node->x = rand01();
-                node->y = rand01();
-                node->z = rand01();
-                cursor->next = node;
-                cursor = node;
-                counter++;
+                newnode->n = i;
+                newnode->x = rand01();
+                newnode->y = rand01();
+                newnode->z = rand01();
+                cursor->next = newnode;
+                cursor = newnode;
             }
-            temp = head;
-            head = head->next;
-            free(temp);
-            return head;
+            out = head->next;
+            free(head);
+            return out;
         case 4:
-            while (cursor != NULL)
+            for (int i = 0; i < n; i++)
             {
-                node* node = malloc(sizeof(node));
-                if(node == NULL)
+                node* newnode = malloc(sizeof(node));
+                if(newnode == NULL)
                 {
-                    printf("Memory allocation error");
+                    printf("Memory allocation error\n");
                     return NULL;
                 }
-                node->n = counter;
-                node->x = rand01();
-                node->y = rand01();
-                node->z = rand01();
-                node->w = rand01();
-                cursor->next = node;
-                cursor = node;
-                counter++;
+                newnode->n = i;
+                newnode->x = rand01();
+                newnode->y = rand01();
+                newnode->z = rand01();
+                newnode->w = rand01();
+                cursor->next = newnode;
+                cursor = newnode;
             }
-            temp = head;
-            head = head->next;
-            free(temp);
+            out = head->next;
+            free(head);
             return head;
     }
     printf("Invalid dimension");

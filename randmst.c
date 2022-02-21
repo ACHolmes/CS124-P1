@@ -1,9 +1,10 @@
 #include "prim.h"
 
-#define nArray = [128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144]
+//#define nArray = [128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144]
 // Capped at 512, 1024 doesn't work
 int main(int argc, char* argv[])
 {
+    int nArray[] = {128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144};
     // sets random seed for rand functionality
     srand( time(NULL));
     if (argc != 5)
@@ -19,12 +20,24 @@ int main(int argc, char* argv[])
         printf("Need positive number of trials");
         return 1;
     }
-    for (int i = 0; i < numtrials; i++)
+    for (int k = 0; k < 7; k++)
     {
-        node* list = graphVertices(numpoints, dimension);
-        //print_nodes(list, numpoints, dimension);
-        printf("Result %i: %f \n", i, prim(list, numpoints, dimension));
-        clearNodes(list);
+        for (int j = 3; j < 5; j++)
+        {
+            for (int i = 0; i < numtrials; i++)
+            {
+                node* list = graphVertices(128, 3);
+                if (list == NULL)
+                {
+                    printf("Graph Generation error");
+                    return 1;
+                }
+                //print_nodes(list, numpoints, dimension);
+                printf("Result %i: %f \n", i, prim(list, 128, 3));
+                fflush(stdout);
+                clearNodes(list);
+            }
+        }
     }
     return 0;
 } 
