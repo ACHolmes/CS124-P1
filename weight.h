@@ -5,14 +5,46 @@
 
 // Attempting to implement adjacency list format to reduce memory usage.
 
-void print_nodes(node* head) {
-    node* current = head;
-
-    while (current != NULL) {
-        printf("%i: %f %f %f %f\n", current->n, current->x, current->y, current->z, current->w);
-        fflush(stdout);
-        current = current->next;
+void print_nodes(node* head, int n, int dim) {
+    switch(dim)
+    {
+        case 1:
+            for (int i = 0; i < n; i++) 
+            {
+                printf("%i: %f\n", head->n, head->x);
+                fflush(stdout);
+                head = head->next;
+            }
+            printf("%i: %f\n", head->n, head->x);
+            return;
+        case 2:
+            for (int i = 0; i < n; i++) 
+            {
+                printf("%i: %f %f\n", head->n, head->x, head->y);
+                fflush(stdout);
+                head = head->next;
+            }
+            return;
+        case 3:
+            for (int i = 0; i < n; i++)
+            {
+                printf("%i: %f %f %f\n", head->n, head->x, head->y, head->z);
+                fflush(stdout);
+                head = head->next;
+            }
+            printf("%i: %f %f %f\n", head->n, head->x, head->y, head->z);
+            return;
+        case 4:
+            for (int i = 0; i < n; i++)
+            {
+                printf("%i: %f %f %f %f\n", head->n, head->x, head->y, head->z, head->w);
+                fflush(stdout);
+                head = head->next;
+            }
+            printf("%i: %f %f %f %f\n", head->n, head->x, head->y, head->z, head->w);
+            return;
     }
+    printf("test");
 }
 
 void print_edges(edge* head)

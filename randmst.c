@@ -1,4 +1,4 @@
-#include "heap.h"
+#include "prim.h"
 
 #define nArray = [128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144]
 // Capped at 512, 1024 doesn't work
@@ -19,7 +19,7 @@ int main(int argc, char* argv[])
     // >= 12 breaks?
     //float* mat = createBlank(n, 1);
     node* list = graphVertices(numpoints, dimension);
-    //print_nodes(list);
+    print_nodes(list, numpoints, dimension);
     printf("%f", prim(list, numpoints, dimension));
     clearNodes(list);
     return 0;
