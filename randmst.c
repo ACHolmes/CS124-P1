@@ -20,6 +20,17 @@ int main(int argc, char* argv[])
         printf("Need positive number of trials");
         return 1;
     }
+    node* list = graphVertices(numpoints, dimension);
+    //print_nodes(list, numpoints, dimension);
+    if (list == NULL)
+    {
+        printf("Graph Generation error");
+        return 1;
+    }
+    printf("Result: %f\n", prim(list, numpoints, dimension));
+    fflush(stdout);
+    clearNodes(list);
+    /* Trying to automate testing, but this breaks for >2 iterations for some reason
     for (int k = 0; k < 7; k++)
     {
         for (int j = 3; j < 5; j++)
@@ -38,6 +49,6 @@ int main(int argc, char* argv[])
                 clearNodes(list);
             }
         }
-    }
+    }*/
     return 0;
 } 

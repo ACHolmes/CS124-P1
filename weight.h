@@ -7,7 +7,7 @@ void print_nodes(node* head, int n, int dim) {
     switch(dim)
     {
         case 1:
-            for (int i = 0; i < n; i++) 
+            for (int i = 0; i < n - 1; i++) 
             {
                 printf("%i: %f\n", head->n, head->x);
                 fflush(stdout);
@@ -16,15 +16,16 @@ void print_nodes(node* head, int n, int dim) {
             printf("%i: %f\n", head->n, head->x);
             return;
         case 2:
-            for (int i = 0; i < n; i++) 
+            for (int i = 0; i < n - 1; i++) 
             {
                 printf("%i: %f %f\n", head->n, head->x, head->y);
                 fflush(stdout);
                 head = head->next;
             }
+            printf("%i: %f\n", head->n, head->x, head->y);
             return;
         case 3:
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < n - 1; i++)
             {
                 printf("%i: %f %f %f\n", head->n, head->x, head->y, head->z);
                 fflush(stdout);
@@ -33,7 +34,7 @@ void print_nodes(node* head, int n, int dim) {
             printf("%i: %f %f %f\n", head->n, head->x, head->y, head->z);
             return;
         case 4:
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < n - 1; i++)
             {
                 printf("%i: %f %f %f %f\n", head->n, head->x, head->y, head->z, head->w);
                 fflush(stdout);
