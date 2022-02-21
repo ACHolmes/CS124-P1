@@ -69,7 +69,7 @@ float prim(node* nodes, int n, int dim)
     float total = 0.0;
     // start with the first node
     node* node = nodes;
-
+    node2 = node;
     // We are going to add n-1 edges
     for (int i = 0; i < n - 1; i++)
     {
@@ -82,14 +82,19 @@ float prim(node* nodes, int n, int dim)
             // via a cheaper route using the most recently added node
             if(distances[j] > -0.5 && j != node->n)
             {
-                node2 = ithNode(nodes, j);
                 float dist = distance(node, node2, dim);
                 if ( dist < distances[j])
                 {
                     distances[j] = dist;
                 }
             }
+            if (node2->next)
+            {
+                node2 = node2->next;
+            }
         }
+        // Resetting back to the start
+        node2 = nodes;
         float min = 3.0;
         // Find the shortest path available to us after this set of updates
         for (int k = 0; k < n; k++)
