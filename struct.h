@@ -9,4 +9,3 @@ typedef struct node{
     float w;
     node * next;
 } node;
-
