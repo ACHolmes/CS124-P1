@@ -15,11 +15,8 @@ int main(int argc, char* argv[])
     int numtrials = atoi(argv[3]);
     int dimension = atoi(argv[4]);
 
-    // Currently caps out at 8192 :( too much malloc!
-    // >= 12 breaks?
-    //float* mat = createBlank(n, 1);
     node* list = graphVertices(numpoints, dimension);
-    print_nodes(list, numpoints, dimension);
+    //print_nodes(list, numpoints, dimension);
     printf("%f", prim(list, numpoints, dimension));
     clearNodes(list);
     return 0;
