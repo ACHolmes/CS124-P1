@@ -46,15 +46,15 @@ void print_nodes(node* head, int n, int dim) {
     printf("Invalid dimesion\n");
 }
 
-void clearNodes(node* head)
+void clearNodes(node* head, int n)
 {
-    node* cursor = head;
-    while (cursor != NULL)
+    for (int i = 0; i < n - 1; i++)
     {
-        node* temp = cursor->next;
-        free(cursor);
-        cursor = temp;
+        node* temp = head->next;
+        free(head);
+        head = temp;
     }
+    free(head);
     return;
 }
 
@@ -75,11 +75,10 @@ node* graphVertices(int n, int dim)
                 {
                     printf("Memory allocation error\n");
                     free(newnode);
-                    clearNodes(head);
+                    clearNodes(head, n);
                     return NULL;
                 }
                 newnode->n = i;
-                newnode->x = rand01();
                 cursor->next = newnode;
                 cursor = newnode;
             }
@@ -93,7 +92,7 @@ node* graphVertices(int n, int dim)
                 if(newnode == NULL)
                 {
                     free(newnode);
-                    clearNodes(head);
+                    clearNodes(head, n);
                     printf("Node allocation error\n");
                     return NULL;
                 }   
@@ -113,7 +112,7 @@ node* graphVertices(int n, int dim)
                 if(newnode == NULL)
                 {
                     free(newnode);
-                    clearNodes(head);
+                    clearNodes(head, n);
                     printf("Memory allocation error\n");
                     return NULL;
                 }
@@ -134,7 +133,7 @@ node* graphVertices(int n, int dim)
                 if(newnode == NULL)
                 {
                     free(newnode);
-                    clearNodes(head);
+                    clearNodes(head, n);
                     printf("Memory allocation error\n");
                     return NULL;
                 }

@@ -27,28 +27,18 @@ int main(int argc, char* argv[])
         printf("Graph Generation error");
         return 1;
     }
-    printf("Result: %f\n", prim(list, numpoints, dimension));
-    fflush(stdout);
-    clearNodes(list);
-    //Trying to automate testing, but this breaks for >2 iterations for some reason
-    /*for (int k = 0; k < 7; k++)
+    for (int i = 0; i < numtrials; i++)
     {
-        for (int j = 3; j < 5; j++)
+        node* list = graphVertices(numpoints, dimension);
+        if (list == NULL)
         {
-            for (int i = 0; i < numtrials; i++)
-            {
-                node* list = graphVertices(128, 3);
-                if (list == NULL)
-                {
-                    printf("Graph Generation error");
-                    return 1;
-                }
-                //print_nodes(list, numpoints, dimension);
-                printf("Result %i: %f \n", i, prim(list, 128, 3));
-                fflush(stdout);
-                clearNodes(list);
-            }
+            printf("Graph Generation error");
+            return 1;
         }
-    }*/
+        //print_nodes(list, numpoints, dimension);
+        printf("Result %i (%i, dim: %i): %f \n", i, numpoints, dimension, prim(list, numpoints, dimension));
+        fflush(stdout);
+        clearNodes(list, numpoints);
+    }
     return 0;
 } 
