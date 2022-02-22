@@ -31,7 +31,7 @@ float distance(node* n1, node* n2, int dim)
             return w;
         case 4:
             w = sqrt(( ( pow(n1->x - n2->x, 2) ) + ( pow(n1->y  - n2->y, 2) )
-                           + ( pow(n1->z - n2->z, 2) ) + ( pow(n1->w  - n2->w, 2) ) ));
+                     + ( pow(n1->z - n2->z, 2) ) + ( pow(n1->w  - n2->w, 2) ) ));
             return w;
     }
     printf("Invalid dimension \n");

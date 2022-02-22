@@ -133,6 +133,8 @@ node* graphVertices(int n, int dim)
                 node* newnode = malloc(sizeof(node));
                 if(newnode == NULL)
                 {
+                    free(newnode);
+                    clearNodes(head);
                     printf("Memory allocation error\n");
                     return NULL;
                 }
@@ -146,7 +148,7 @@ node* graphVertices(int n, int dim)
             }
             out = head->next;
             free(head);
-            return head;
+            return out;
     }
     printf("Invalid dimension");
     return NULL;
