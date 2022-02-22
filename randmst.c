@@ -27,6 +27,7 @@ int main(int argc, char* argv[])
         printf("Graph Generation error");
         return 1;
     }
+    float average = 0.0;
     for (int i = 0; i < numtrials; i++)
     {
         node* list = graphVertices(numpoints, dimension);
@@ -36,9 +37,13 @@ int main(int argc, char* argv[])
             return 1;
         }
         //print_nodes(list, numpoints, dimension);
-        printf("Result %i (%i, dim: %i): %f \n", i, numpoints, dimension, prim(list, numpoints, dimension));
+        float result = prim(list, numpoints, dimension);
+        printf("Result %i (%i, dim: %i): %f \n", i, numpoints, dimension, result);
+        average += result;
         fflush(stdout);
         clearNodes(list, numpoints);
     }
+    average = average / numtrials;
+    printf("Average: %f (%i, dim: %i, trials: %i)", average, numpoints, dimension, numtrials);
     return 0;
 } 
