@@ -20,7 +20,7 @@ float distance(node* n1, node* n2, int dim)
     switch(dim)
     {
         case 1:
-            w = abs(n1->x - n2->x);
+            w = fabs(n1->x - n2->x);
             return w;
         case 2:
             w = sqrt(( ( pow(n1->x - n2->x, 2.0) ) + ( pow(n1->y  - n2->y, 2) ) ));
