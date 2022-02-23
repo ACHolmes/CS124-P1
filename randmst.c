@@ -38,7 +38,8 @@ int main(int argc, char* argv[])
         }
         //print_nodes(list, numpoints, dimension);
         float result = prim(list, numpoints, dimension);
-        printf("Result %i (%i, dim: %i): %f \n", i, numpoints, dimension, result);
+        printf("%f\n", result);
+        //printf("Result %i (%i, dim: %i): %f \n", i, numpoints, dimension, result);
         average += result;
         fflush(stdout);
         clearNodes(list, numpoints);

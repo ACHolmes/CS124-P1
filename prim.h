@@ -1,5 +1,7 @@
 #include "weight.h"
 #include "string.h"
+#include "mtwister.h"
+#include "mtwister.c"
 
 /*def Prim(G, length: E(G) → ℝ, s ∈ V(G)):
 	vertices_to_explore = [s: 0]		//priority queue
@@ -14,13 +16,14 @@
 				dist[w] = length(v,w)
 				insert(w,dist[w],vertices_to_explore)*/
 
-float distance(node* n1, node* n2, int dim)
+double distance(node* n1, node* n2, int dim)
 {
-    float w;
+    double w;
     switch(dim)
     {
         case 1:
-            return rand01();
+          printf("Dimension catch error");
+          return 0.0;
         case 2:
             w = sqrt(( ( pow(n1->x - n2->x, 2.0) ) + ( pow(n1->y  - n2->y, 2) ) ));
             return w;
@@ -55,8 +58,10 @@ node* ithNode(node* head, int n)
 float prim(node* nodes, int n, int dim)
 {
     float distances[n];
+    MTRand r = seedRand(time(NULL));
     int minIndex = 0;
     node* node2;
+    double dist;
     // Set start node distance of -1 so we never loop back to it
     distances[0] = -1.0;
     // Everything else 3.0, impossibly far away so essentially infinity
@@ -81,7 +86,14 @@ float prim(node* nodes, int n, int dim)
             // via a cheaper route using the most recently added node
             if(distances[j] > -0.5 && j != node->n)
             {
-                float dist = distance(node, node2, dim);
+                if (dim != 1)
+                {
+                    dist = distance(node, node2, dim);
+                }
+                else
+                {
+                    dist = genRand(&r);
+                }
                 if ( dist < distances[j])
                 {
                     distances[j] = dist;

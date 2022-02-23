@@ -8,5 +8,5 @@
 // Random number in 0-1 helper function
 float rand01(void)
 {
-    return (float) rand()/RAND_MAX;
+    return (float) rand()/ (RAND_MAX);
 } 
