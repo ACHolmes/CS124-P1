@@ -6,7 +6,7 @@ int main(int argc, char* argv[])
 {
     int nArray[] = {128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144};
     // sets random seed for rand functionality
-    srand( time(NULL));
+    srand( time(NULL) );
     if (argc != 5)
     {
         printf("Usage: ./randmst 0 numpoints numtrials dimension");
@@ -37,7 +37,7 @@ int main(int argc, char* argv[])
             return 1;
         }
         //print_nodes(list, numpoints, dimension);
-        float result = prim(list, numpoints, dimension);
+        float result = prim(list, numpoints, dimension, i);
         printf("%f\n", result);
         //printf("Result %i (%i, dim: %i): %f \n", i, numpoints, dimension, result);
         average += result;

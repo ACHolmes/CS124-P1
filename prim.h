@@ -55,10 +55,10 @@ node* ithNode(node* head, int n)
     return head;
 }
 
-float prim(node* nodes, int n, int dim)
+float prim(node* nodes, int n, int dim, int iter)
 {
     float distances[n];
-    MTRand r = seedRand(time(NULL));
+    MTRand r = seedRand(time(NULL) + iter);
     int minIndex = 0;
     node* node2;
     double dist;
